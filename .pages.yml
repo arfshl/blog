@@ -1,7 +1,7 @@
 media: media
 
 content:
-  - name: posts
+  - name: pages
     label: Blog Posts
     type: collection
     path: docs
