@@ -29,3 +29,9 @@ content:
       - name: body
         label: Content
         type: rich-text
+
+      - name: slug
+        label: Slug
+        type: string
+        required: true
+        pattern: "^[a-z0-9-]+$"
