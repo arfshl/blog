@@ -1,11 +1,9 @@
-
 media: media
-
 content:
-  - name: posts
-    label: Posts
+  - name: pages
+    label: Pages
     type: collection
-    path: posts
+    path: docs
     fields:
       - name: title
         type: string
