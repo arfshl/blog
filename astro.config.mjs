@@ -1,10 +1,10 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
-export default defineConfig(({ command }) => ({
+export default defineConfig({
   site: 'https://arfshl.github.io',
-  base: command === 'build' ? '/blog' : '',
+  base: '/blog',
   vite: {
-    plugins: [tailwindcss()],
-  },
-}));
+    plugins: [tailwindcss()]
+  }
+});
