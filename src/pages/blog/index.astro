@@ -54,7 +54,7 @@ const hasMorePages = remainingPosts.length > postsPerPage;
     <div class="grid gap-6 md:grid-cols-3">
       {latestPosts.map((post) => (
         <article
-          class="group rounded-xl border border-gray-700 bg-gray-800 p-6 shadow-lg transition hover:-translate-y-1 hover:border-cyan-400"
+          class="group rounded-xl border border-gray-700 bg-gray-800 p-6 shadow-lg"
         >
           <div class="mb-4 flex flex-wrap items-center gap-2 text-xs">
             <span class="rounded-md bg-cyan-400/10 px-2 py-1 text-cyan-300">
@@ -106,7 +106,7 @@ const hasMorePages = remainingPosts.length > postsPerPage;
       <div class="space-y-4">
         {firstPagePosts.map((post) => (
           <article
-            class="group rounded-xl border border-gray-700 bg-gray-800 p-5 shadow-lg transition hover:border-cyan-400 sm:p-6"
+            class="group rounded-xl border border-gray-700 bg-gray-800 p-5 shadow-lg sm:p-6"
           >
             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div class="min-w-0 flex-1">
@@ -160,7 +160,7 @@ const hasMorePages = remainingPosts.length > postsPerPage;
       >
         <a
           href="/blog/page/2/"
-          class="rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 text-sm text-gray-300 transition hover:border-cyan-400 hover:text-cyan-400"
+          class="rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 text-sm text-gray-300"
         >
           More articles →
         </a>
