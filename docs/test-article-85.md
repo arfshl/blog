@@ -1,0 +1,12 @@
+---
+title: Test Article 85
+slug: test-article-85
+description: This is test article number 85.
+date: 2026-09-15
+category: tech
+tags: test
+---
+
+# Test Article 85
+
+This is dummy article number 85.
