@@ -62,16 +62,17 @@ const {
 
     </div>
 
-    <div class="space-y-4">
+<div class="space-y-4">
       {posts.map((post) => (
         <article class="group rounded-xl border border-gray-700 bg-gray-800 p-5 shadow-lg sm:p-6">
           <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div class="min-w-0 flex-1">
               <div class="mb-2 flex flex-wrap items-center gap-2 text-xs">
                 <a
-                href={`/blog/${post.data.category}/`}
-                class="rounded-md bg-cyan-400/10 px-2 py-1 text-cyan-300 transition-colors hover:text-cyan-300!">
-                {post.data.category}
+                  href={`/blog/${post.data.category}/`}
+                  class="rounded-md bg-cyan-400/10 px-2 py-1 text-cyan-300 transition-colors hover:text-cyan-300!"
+                >
+                  {post.data.category}
                 </a>
 
                 <span class="text-gray-500">
@@ -90,20 +91,27 @@ const {
               </h2>
 
               {post.data.description && (
-              <p class="text-gray-400 text-xs md:text-sm">
-              {post.data.description}
-              </p>
-)}
+                <p class="text-gray-400 text-xs md:text-sm">
+                  {post.data.description}
+                </p>
+              )}
             </div>
 
-            <a href={`/blog/tag/${post.data.tags}/`}
-               class="shrink-0 self-start rounded bg-gray-700 px-2 py-1 text-xs text-gray-400 sm:self-center">
-               #{post.data.tags}
-            </a>
+            <div class="flex flex-wrap gap-2">
+              {post.data.tags?.map((tag) => (
+                <a 
+                  href={`/blog/tag/${tag}/`}
+                  class="shrink-0 self-start rounded bg-gray-700 px-2 py-1 text-xs text-gray-400 sm:self-center"
+                >
+                  #{tag}
+                </a>
+              ))}
+            </div>
           </div>
         </article>
       ))}
     </div>
+
 
     <nav class="mt-8 flex w-full items-center justify-center gap-2 text-xs md:gap-4 md:text-sm">
       {currentPage > 1 && (

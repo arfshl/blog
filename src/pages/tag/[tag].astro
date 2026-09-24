@@ -11,10 +11,7 @@ export async function getStaticPaths() {
   const tags = [
     ...new Set(
       posts.flatMap((post) =>
-        post.data.tags
-          .split(",")
-          .map((tag) => tag.trim())
-          .filter(Boolean),
+        post.data.tags ?? []
       ),
     ),
   ];
@@ -22,10 +19,7 @@ export async function getStaticPaths() {
   return tags.map((tag) => {
     const tagPosts = posts
       .filter((post) =>
-        post.data.tags
-          .split(",")
-          .map((postTag) => postTag.trim())
-          .includes(tag),
+        (post.data.tags ?? []).includes(tag)
       )
       .sort(
         (a, b) =>
@@ -115,12 +109,16 @@ const pagePosts = posts.slice(0, postsPerPage);
               )}
             </div>
 
-            <a
-              href={`/blog/tag/${post.data.tags}/`}
-              class="shrink-0 self-start rounded bg-gray-700 px-2 py-1 text-xs text-gray-400 sm:self-center"
-            >
-              #{post.data.tags}
-            </a>
+            <div class="flex flex-wrap gap-2 self-start sm:self-center">
+              {(post.data.tags ?? []).map((postTag) => (
+                <a
+                  href={`/blog/tag/${postTag}/`}
+                  class="rounded bg-gray-700 px-2 py-1 text-xs text-gray-400"
+                >
+                  #{postTag}
+                </a>
+              ))}
+            </div>
           </div>
         </article>
       ))}

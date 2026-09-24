@@ -7,7 +7,8 @@ title: Test Article $i
 description: This is dummy article number $i.
 date: 2026-09-15
 category: tech
-tags: test
+tags: 
+  - test
 slug: $slug
 ---
 

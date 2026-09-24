@@ -80,7 +80,7 @@ const {
       </p>
     </div>
 
-    <div class="space-y-4">
+<div class="space-y-4">
       {posts.map((post) => (
         <article class="group rounded-xl border border-gray-700 bg-gray-800 p-5 shadow-lg sm:p-6">
           <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -118,12 +118,16 @@ const {
               )}
             </div>
 
-            <a
-              href={`/blog/tag/${post.data.tags}/`}
-              class="shrink-0 self-start rounded bg-gray-700 px-2 py-1 text-xs text-gray-400 sm:self-center"
-            >
-              #{post.data.tags}
-            </a>
+            <div class="flex flex-wrap gap-2">
+              {post.data.tags?.map((tag) => (
+                <a 
+                  href={`/blog/tag/${tag}/`}
+                  class="shrink-0 self-start rounded bg-gray-700 px-2 py-1 text-xs text-gray-400 sm:self-center"
+                >
+                  #{tag}
+                </a>
+              ))}
+            </div>
           </div>
         </article>
       ))}

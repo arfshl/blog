@@ -39,7 +39,7 @@ const pagePosts = posts.slice(0, postsPerPage);
 
 <Layout
   title={`Category: ${category} - arfshl/blog`}
-  description={`Articles in {category} category - arfshl/blog`}
+  description={`Articles in ${category} category - arfshl/blog`}
 >
   <section>
     <div class="mb-8">
@@ -89,12 +89,16 @@ const pagePosts = posts.slice(0, postsPerPage);
               )}
             </div>
 
-            <a
-              href={`/blog/tag/${post.data.tags}/`}
-              class="shrink-0 self-start rounded bg-gray-700 px-2 py-1 text-xs text-gray-400 sm:self-center"
-            >
-              #{post.data.tags}
-            </a>
+            <div class="flex flex-wrap gap-2 self-start sm:self-center">
+              {(post.data.tags ?? []).map((tag) => (
+                <a
+                  href={`/blog/tag/${tag}/`}
+                  class="rounded bg-gray-700 px-2 py-1 text-xs text-gray-400"
+                >
+                  #{tag}
+                </a>
+              ))}
+            </div>
           </div>
         </article>
       ))}

@@ -2,8 +2,6 @@
 import Layout from "../../../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
-const postsPerPage = 6;
-
 // Generate paginated pages for every blog tag
 export async function getStaticPaths() {
   const postsPerPage = 6;
@@ -12,22 +10,14 @@ export async function getStaticPaths() {
   // Get unique tags from all posts
   const tags = [
     ...new Set(
-      posts.flatMap((post) =>
-        post.data.tags
-          .split(",")
-          .map((tag) => tag.trim())
-          .filter(Boolean),
-      ),
+      posts.flatMap((post) => post.data.tags ?? []),
     ),
   ];
 
   return tags.flatMap((tag) => {
     const tagPosts = posts
       .filter((post) =>
-        post.data.tags
-          .split(",")
-          .map((postTag) => postTag.trim())
-          .includes(tag),
+        (post.data.tags ?? []).includes(tag),
       )
       .sort(
         (a, b) =>
@@ -35,7 +25,9 @@ export async function getStaticPaths() {
           new Date(a.data.date).getTime(),
       );
 
-    const totalPages = Math.ceil(tagPosts.length / postsPerPage);
+    const totalPages = Math.ceil(
+      tagPosts.length / postsPerPage,
+    );
 
     // Generate pages starting from page 2
     return Array.from(
@@ -127,12 +119,16 @@ const {
               )}
             </div>
 
-            <a
-              href={`/blog/tag/${post.data.tags}/`}
-              class="shrink-0 self-start rounded bg-gray-700 px-2 py-1 text-xs text-gray-400 sm:self-center"
-            >
-              #{post.data.tags}
-            </a>
+            <div class="flex flex-wrap gap-2 self-start sm:self-center">
+              {(post.data.tags ?? []).map((postTag) => (
+                <a
+                  href={`/blog/tag/${postTag}/`}
+                  class="rounded bg-gray-700 px-2 py-1 text-xs text-gray-400"
+                >
+                  #{postTag}
+                </a>
+              ))}
+            </div>
           </div>
         </article>
       ))}
