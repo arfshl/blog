@@ -6,7 +6,6 @@ tags: tutorial
 slug: blackberry-cod-localinstall
 ---
 ## Overview
-
 I recently find that java-based BlackBerry OS (before 10) can theoritically install .cod files without BlackBerry Desktop Manager with just .jad metadata and .cod application file, here's how
 
 #### Java Application Descriptor (.jad) file structure used by BlackBerry
@@ -141,3 +140,5 @@ RIM-COD-URL: file:///SDCard/opera-mini-4.5.33868-advanced-en-fw4.2/operette-hifi
 ```
 
 RIM-COD-Size isn't necessarily accurate, but required in a valid value, not random numbers, so if you have .cod sized more than this, using this example wouldn't be break your apps, just replace RIM-COD-URL with your own file location
+
+[Licensed under CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode.txt)

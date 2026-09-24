@@ -1,0 +1,178 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+// Generate static routes and pagination data for every blog category at build time
+export async function getStaticPaths() {
+  // Define how many blog posts should appear on each paginated page
+  const postsPerPage = 6;
+  
+  // Fetch all posts from the "blog" content collection
+  const posts = await getCollection("blog");
+
+  // Extract all categories from posts and use Set to remove duplicate values
+  const categories = [...new Set(posts.map((post) => post.data.category))];
+
+  // Map over each unique category and flatten the resulting array of pages into a single route array
+  return categories.flatMap((category) => {
+    // Filter posts that belong ONLY to the current category in the loop
+    // and sort them in descending order (newest to oldest) by date
+    const categoryPosts = posts
+      .filter((post) => post.data.category === category)
+      .sort(
+        (a, b) =>
+          new Date(b.data.date).getTime() -
+          new Date(a.data.date).getTime(),
+      );
+
+    // Calculate the total number of pages needed for this category
+    const totalPages = Math.ceil(categoryPosts.length / postsPerPage);
+
+    // Create an array of page objects starting from page 2
+    // Page 1 is handled separately at [category].astro
+    return Array.from({ length: Math.max(totalPages - 1, 0) }, (_, index) => {
+      // Offset index by 2 so the loop starts from page number 2
+      const currentPage = index + 2;
+      
+      // Calculate start and end indexes to slice the posts array for the current page
+      const start = (currentPage - 1) * postsPerPage;
+      const end = start + postsPerPage;
+
+      return {
+        // Dynamic URL parameters passed to Astro route matcher
+        params: {
+          category,
+          page: String(currentPage),
+        },
+        // Props passed down to the Astro component instance
+        props: {
+          category,
+          posts: categoryPosts.slice(start, end),
+          currentPage,
+          totalPages,
+        },
+      };
+    });
+  });
+}
+
+// Destructure the component props received from getStaticPaths
+const {
+  category,
+  posts,
+  currentPage,
+  totalPages,
+} = Astro.props;
+---
+
+<Layout
+  title={`Category: ${category} · Page ${currentPage} - arfshl/blog`}
+  description={`Articles in {category} category · Page ${currentPage} - arfshl/blog`}
+>
+  <section>
+    <div class="mb-8">
+      <h1 class="text-xl font-bold text-gray-100">
+        {category}
+      </h1>
+
+      <p class="mt-2 text-xs text-gray-400 md:text-sm">
+        Page {currentPage} of {totalPages}
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      {posts.map((post) => (
+        <article class="group rounded-xl border border-gray-700 bg-gray-800 p-5 shadow-lg sm:p-6">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div class="min-w-0 flex-1">
+              <div class="mb-2 flex flex-wrap items-center gap-2 text-xs">
+                <a
+                  href={`/blog/${post.data.category}/`}
+                  class="rounded-md bg-cyan-400/10 px-2 py-1 text-cyan-300 transition-colors hover:text-cyan-300!"
+                >
+                  {post.data.category}
+                </a>
+
+                <span class="text-gray-500">
+                  {new Date(post.data.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </span>
+              </div>
+
+              <h2 class="mb-3 text-base font-bold text-gray-100 md:text-lg">
+                <a
+                  href={`/blog/${post.data.category}/${post.data.slug}/`}
+                  class="transition group-hover:text-gray-400"
+                >
+                  {post.data.title}
+                </a>
+              </h2>
+
+              {post.data.description && (
+                <p class="text-xs text-gray-400 md:text-sm">
+                  {post.data.description}
+                </p>
+              )}
+            </div>
+
+            <a
+              href={`/blog/tag/${post.data.tags}/`}
+              class="shrink-0 self-start rounded bg-gray-700 px-2 py-1 text-xs text-gray-400 sm:self-center"
+            >
+              #{post.data.tags}
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <nav class="mt-8 flex w-full items-center justify-center gap-2 text-xs md:gap-4 md:text-sm">
+      <a
+        href={`/blog/${category}/`}
+        class="rounded-md border border-gray-700 bg-gray-800 px-2 py-2 text-gray-300 transition hover:bg-gray-700 md:rounded-lg md:px-4"
+      >
+        <span class="md:hidden">First</span>
+        <span class="hidden md:inline">&lt;&lt; First</span>
+      </a>
+
+      <a
+        href={
+          currentPage === 2
+            ? `/blog/${category}/`
+            : `/blog/${category}/page/${currentPage - 1}/`
+        }
+        class="rounded-md border border-gray-700 bg-gray-800 px-2 py-2 text-gray-300 transition hover:bg-gray-700 md:rounded-lg md:px-4"
+      >
+        <span class="md:hidden">Previous</span>
+        <span class="hidden md:inline">&lt; Previous</span>
+      </a>
+
+      <span class="whitespace-nowrap text-gray-500">
+        Page {currentPage} of {totalPages}
+      </span>
+
+      {currentPage < totalPages && (
+        <a
+          href={`/blog/${category}/page/${currentPage + 1}/`}
+          class="rounded-md border border-gray-700 bg-gray-800 px-2 py-2 text-gray-300 transition hover:bg-gray-700 md:rounded-lg md:px-4"
+        >
+          <span class="md:hidden">Next</span>
+          <span class="hidden md:inline">&gt; Next</span>
+        </a>
+      )}
+
+      {currentPage < totalPages && (
+        <a
+          href={`/blog/${category}/page/${totalPages}/`}
+          class="rounded-md border border-gray-700 bg-gray-800 px-2 py-2 text-gray-300 transition hover:bg-gray-700 md:rounded-lg md:px-4"
+        >
+          <span class="md:hidden">Last</span>
+          <span class="hidden md:inline">&gt;&gt; Last</span>
+        </a>
+      )}
+    </nav>
+  </section>
+</Layout>

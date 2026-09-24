@@ -1,0 +1,183 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+// Generate a page for every blog tag
+export async function getStaticPaths() {
+  const postsPerPage = 6;
+  const posts = await getCollection("blog");
+
+  // Get unique tags from all posts
+  const tags = [
+    ...new Set(
+      posts.flatMap((post) =>
+        post.data.tags
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter(Boolean),
+      ),
+    ),
+  ];
+
+  return tags.map((tag) => {
+    const tagPosts = posts
+      .filter((post) =>
+        post.data.tags
+          .split(",")
+          .map((postTag) => postTag.trim())
+          .includes(tag),
+      )
+      .sort(
+        (a, b) =>
+          new Date(b.data.date).getTime() -
+          new Date(a.data.date).getTime(),
+      );
+
+    return {
+      params: {
+        tag,
+      },
+      props: {
+        tag,
+        posts: tagPosts,
+        currentPage: 1,
+        totalPages: Math.ceil(tagPosts.length / postsPerPage),
+      },
+    };
+  });
+}
+
+const postsPerPage = 6;
+
+const {
+  tag,
+  posts,
+  currentPage,
+  totalPages,
+} = Astro.props;
+
+const pagePosts = posts.slice(0, postsPerPage);
+---
+
+<Layout
+  title={`Tags: ${tag} - arfshl/blog`}
+  description={`Articles in ${tag} tag - arfshl/blog`}
+>
+  <section>
+    <div class="mb-8">
+      <a
+        class="text-xl font-bold text-gray-100"
+        href={`/blog/tag/${tag}`}
+      >
+        Tags: {tag}
+      </a>
+
+      <p class="mt-2 text-xs text-gray-400 md:text-sm">
+        {posts.length} article{posts.length !== 1 ? "s" : ""}
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      {pagePosts.map((post) => (
+        <article class="group rounded-xl border border-gray-700 bg-gray-800 p-5 shadow-lg sm:p-6">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div class="min-w-0 flex-1">
+              <div class="mb-2 flex flex-wrap items-center gap-2 text-xs">
+                <a
+                  href={`/blog/${post.data.category}/`}
+                  class="rounded-md bg-cyan-400/10 px-2 py-1 text-cyan-300 transition-colors hover:text-cyan-300!"
+                >
+                  {post.data.category}
+                </a>
+
+                <span class="text-gray-500">
+                  {new Date(post.data.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </span>
+              </div>
+
+              <h2 class="mb-3 text-base font-bold text-gray-100 md:text-lg">
+                <a
+                  href={`/blog/${post.data.category}/${post.data.slug}/`}
+                  class="transition group-hover:text-gray-400"
+                >
+                  {post.data.title}
+                </a>
+              </h2>
+
+              {post.data.description && (
+                <p class="text-xs text-gray-400 md:text-sm">
+                  {post.data.description}
+                </p>
+              )}
+            </div>
+
+            <a
+              href={`/blog/tag/${post.data.tags}/`}
+              class="shrink-0 self-start rounded bg-gray-700 px-2 py-1 text-xs text-gray-400 sm:self-center"
+            >
+              #{post.data.tags}
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {
+      totalPages > 1 && (
+        <nav class="mt-8 flex w-full items-center justify-center gap-2 text-xs md:gap-4 md:text-sm">
+          {currentPage > 1 && (
+            <a
+              href={`/blog/tag/${tag}/`}
+              class="rounded-md border border-gray-700 bg-gray-800 px-2 py-2 text-gray-300 transition hover:bg-gray-700 md:rounded-lg md:px-4"
+            >
+              <span class="md:hidden">First</span>
+              <span class="hidden md:inline">&lt;&lt; First</span>
+            </a>
+          )}
+
+          {currentPage > 1 && (
+            <a
+              href={
+                currentPage === 2
+                  ? `/blog/tag/${tag}/`
+                  : `/blog/tag/${tag}/page/${currentPage - 1}/`
+              }
+              class="rounded-md border border-gray-700 bg-gray-800 px-2 py-2 text-gray-300 transition hover:bg-gray-700 md:rounded-lg md:px-4"
+            >
+              <span class="md:hidden">Previous</span>
+              <span class="hidden md:inline">&lt; Previous</span>
+            </a>
+          )}
+
+          <span class="whitespace-nowrap text-gray-500">
+            Page {currentPage} of {totalPages}
+          </span>
+
+          {currentPage < totalPages && (
+            <a
+              href={`/blog/tag/${tag}/page/${currentPage + 1}/`}
+              class="rounded-md border border-gray-700 bg-gray-800 px-2 py-2 text-gray-300 transition hover:bg-gray-700 md:rounded-lg md:px-4"
+            >
+              <span class="md:hidden">Next</span>
+              <span class="hidden md:inline">&gt; Next</span>
+            </a>
+          )}
+
+          {currentPage < totalPages && (
+            <a
+              href={`/blog/tag/${tag}/page/${totalPages}/`}
+              class="rounded-md border border-gray-700 bg-gray-800 px-2 py-2 text-gray-300 transition hover:bg-gray-700 md:rounded-lg md:px-4"
+            >
+              <span class="md:hidden">Last</span>
+              <span class="hidden md:inline">&gt;&gt; Last</span>
+            </a>
+          )}
+        </nav>
+      )
+    }
+  </section>
+</Layout>
