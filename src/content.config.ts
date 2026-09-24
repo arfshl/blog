@@ -13,7 +13,7 @@ const blog = defineCollection({
     description: z.string().optional(),
     date: z.coerce.date(),
     category: z.string(),
-    tags: z.object(),
+    tags: z.array(z.string()).optional(),
     slug: z.string(),
   }),
 });
