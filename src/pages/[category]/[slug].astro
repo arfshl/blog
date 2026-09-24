@@ -114,7 +114,8 @@ const { Content } = await render(post);
       [&_pre.astro-code]:leading-6
 
       /* Links */
-    [&_a]:text-cyan-400 [&_a]:underline [&_a]:underline-offset-2 [&_a]:transition-colors [&_a:hover]:text-cyan-300
+    [&_a]:text-cyan-400 [&_a]:underline [&_a]:underline-offset-2 [&_a]:transition-colors [&_a:hover]:text-cyan-300 
+      [&_a]:target-blank [&_a]:rel-noopener
 
       /* Heading anchor links ( behavior: 'wrap' ) */
       [&_h1>a]:text-inherit [&_h1>a]:no-underline [&_h1>a:hover]:text-gray-400
