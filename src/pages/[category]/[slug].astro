@@ -64,7 +64,7 @@ const { Content } = await render(post);
       </h1>
 
       <p class="text-gray-400">
-        {description}
+        {post.data.description}
       </p>
     </div>
 
@@ -87,6 +87,8 @@ const { Content } = await render(post);
       [&_p]:text-sm md:[&_p]:text-base
 
       /* Lists */
+      [&_ul]:mt-4 
+      [&_li]:mb-4 
       [&_ul]:text-sm md:[&_ul]:text-base
       [&_li]:text-sm md:[&_li]:text-base
 
