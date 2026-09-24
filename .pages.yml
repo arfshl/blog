@@ -26,7 +26,6 @@ content:
       - name: tags
         label: Tags
         type: select
-        required: false
         options:
          multiple: true
          creatable: true
