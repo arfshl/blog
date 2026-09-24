@@ -36,6 +36,10 @@ content:
            - "indonesian"
            - "tutorial"
            - "recipes"
+           - "ut"
+           - "news"
+           - "emergency"
+           - "random"
 
 
       - name: body
