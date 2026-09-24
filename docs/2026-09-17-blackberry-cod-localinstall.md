@@ -2,7 +2,8 @@
 title: How to install .cod apps on java-based BlackBerry OS locally without BlackBerry Device Manager
 date: 2026-09-18
 category: tech
-tags: tutorial
+tags:
+  - tutorial
 slug: blackberry-cod-localinstall
 ---
 ## Overview

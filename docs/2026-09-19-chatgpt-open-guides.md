@@ -2,7 +2,8 @@
 title: ChatGPT Open Guides
 date: 2026-09-19
 category: tech
-tags: tutorial
+tags:
+  - tutorial
 slug: chatgpt-open-guides
 ---
 

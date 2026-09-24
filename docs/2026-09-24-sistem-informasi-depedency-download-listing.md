@@ -2,7 +2,8 @@
 title: Sistem Informasi depedency download listing
 date: 2026-09-24
 category: downloadlist
-tags: ut
+tags:
+  - ut
 slug: si-deps-download-list
 ---
 ### Semester 1
