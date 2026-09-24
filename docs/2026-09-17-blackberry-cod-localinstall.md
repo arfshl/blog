@@ -141,4 +141,4 @@ RIM-COD-URL: file:///SDCard/opera-mini-4.5.33868-advanced-en-fw4.2/operette-hifi
 
 RIM-COD-Size isn't necessarily accurate, but required in a valid value, not random numbers, so if you have .cod sized more than this, using this example wouldn't be break your apps, just replace RIM-COD-URL with your own file location
 
-[Licensed under CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode.txt)
+[This article is Licensed under CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode.txt)

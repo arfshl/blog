@@ -24,7 +24,7 @@ const { post } = Astro.props;
 const description =
   post.data.description ||
   post.body
-    .replace(/[#>*_`~-]/g, "")
+    .replace(/[#>*_`~]/g, "")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1")
     .replace(/\s+/g, " ")
@@ -82,11 +82,21 @@ const { Content } = await render(post);
       [&_h6]:mt-4 [&_h6]:mb-4 [&_h6]:border-b [&_h6]:border-gray-400 [&_h6]:pb-3 [&_h6]:text-xs   md:[&_h6]:text-sm   [&_h6]:font-bold
 
       /* Paragraphs */
-      [&_p]:mt-4 [&_p]:mb-4 [&_p]:text-xs md:[&_p]:text-sm
+      [&_p]:mt-4 
+      [&_p]:mb-4 
+      [&_p]:text-sm md:[&_p]:text-base
+
+      /* Lists */
+      [&_ul]:text-sm md:[&_ul]:text-base
+      [&_li]:text-sm md:[&_li]:text-base
 
       /* Images */
-      [&_img]:block [&_img]:mt-10 [&_img]:mb-10 [&_img]:w-200
-      [&_img]:max-w-full [&_img]:mx-auto
+      [&_img]:block 
+      [&_img]:mt-10 
+      [&_img]:mb-10 
+      [&_img]:w-200
+      [&_img]:max-w-full 
+      [&_img]:mx-auto
 
       /* Tables */
       [&_table]:my-6 [&_table]:w-full [&_table]:min-w-175 [&_table]:border-collapse

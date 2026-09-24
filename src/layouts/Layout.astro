@@ -58,8 +58,17 @@ const { title, description } = Astro.props;
       <slot />
     </main>
 
-    <footer class="mx-auto w-[calc(100%-2rem)] max-w-6xl border-t border-gray-700 py-8 text-center text-xs md:text-sm text-gray-500">
-      <p>© 2026 - Present. Alif Putra Winata. All rights reserved. </p>
-    </footer>
+    <footer class="mx-auto w-[calc(100%-2rem)] max-w-6xl border-t border-gray-700 py-8 text-center text-xs text-gray-400 md:text-sm">
+       <p>© 2026 - Present. All rights reserved.</p>
+
+       <p class="mt-2">
+          <a
+            href="https://github.com/arfshl/blog/blob/main/LICENSE"
+            class="underline underline-offset-2 transition-colors hover:text-gray-100"
+           >
+           See license for this website
+          </a>
+        </p>
+</footer>
   </body>
 </html>
