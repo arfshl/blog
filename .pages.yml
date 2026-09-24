@@ -25,7 +25,18 @@ content:
 
       - name: tags
         label: Tags
-        type: string
+        type: select
+        required: false
+        options:
+         multiple: true
+         creatable: true
+         placeholder: "Select or type tags..."
+         values:
+           - "tech"
+           - "indonesian"
+           - "tutorial"
+           - "recipes"
+
 
       - name: body
         label: Content
