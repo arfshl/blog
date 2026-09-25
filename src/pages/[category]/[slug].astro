@@ -87,10 +87,19 @@ const { Content } = await render(post);
       [&_p]:text-sm md:[&_p]:text-base
 
       /* Lists */
-      [&_ul]:mt-4 
-      [&_li]:mb-4 
-      [&_ul]:text-sm md:[&_ul]:text-base
-      [&_li]:text-sm md:[&_li]:text-base
+      [&_ul]:mt-4
+      [&_ol]:mt-4
+      [&_ul]:list-disc
+      [&_ol]:list-decimal
+      [&_ul]:pl-6
+      [&_ol]:pl-6
+      [&_li]:mb-4
+      [&_ul]:text-sm
+      md:[&_ul]:text-base
+      [&_ol]:text-sm
+      md:[&_ol]:text-base
+      [&_li]:text-sm
+      md:[&_li]:text-base
 
       /* Images */
       [&_img]:block 
