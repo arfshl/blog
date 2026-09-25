@@ -133,6 +133,27 @@ const { Content } = await render(post);
       [&_h4>a]:text-inherit [&_h4>a]:no-underline [&_h4>a:hover]:text-gray-400
       [&_h5>a]:text-inherit [&_h5>a]:no-underline [&_h5>a:hover]:text-gray-400
       [&_h6>a]:text-inherit [&_h6>a]:no-underline [&_h6>a:hover]:text-gray-400
+
+      /* Checklist  */
+      /* Delete browser defaults */
+      [&_input[type='checkbox']]:appearance-none
+      [&_input[type='checkbox']]:w-4
+      [&_input[type='checkbox']]:h-4
+      [&_input[type='checkbox']]:mr-2
+      [&_input[type='checkbox']]:align-middle
+      [&_input[type='checkbox']]:border
+      [&_input[type='checkbox']]:border-gray-400
+      [&_input[type='checkbox']]:rounded-sm
+
+      /* Add color even the checkbox is unedited (disabled status) */
+      [&_input[type='checkbox']:checked]:bg-cyan-300
+      [&_input[type='checkbox']:checked]:border-cyan-300
+      
+      /* Manually add checkmark icons */
+      [&_input[type='checkbox']:checked]:bg-[url('data:image/svg+xml;utf8,%3Csvg%20viewBox=%220%200%2016%2016%22%20fill=%22%23111827%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath%20d=%22M12.207%204.793a1%201%200%20010%201.414l-5%205a1%201%200%2001-1.414%200l-2-2a1%201%200%20011.414-1.414L6.5%209.086l4.293-4.293a1%201%200%20011.414%200z%22/%3E%3C/svg%3E')]
+      [&_input[type='checkbox']:checked]:bg-center
+      [&_input[type='checkbox']:checked]:bg-no-repeat
+
       ">
          <Content />
       </div>
