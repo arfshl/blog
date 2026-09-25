@@ -173,7 +173,9 @@ This paragraph contains an [inline link](https://example.com) together with norm
 
 ## 9. Images
 
-![Lorem ipsum placeholder](https://placehold.co/800x400/png?text=Lorem+Ipsum)
+![](https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Sukhoi_Su-30SM_in_flight_2014.jpg/1280px-Sukhoi_Su-30SM_in_flight_2014.jpg)
+
+https://en.wikipedia.org/wiki/Sukhoi_Su-30
 
 ---
 
