@@ -10,6 +10,12 @@ export default defineConfig({
   base: '/blog',
 
   markdown: {
+    syntaxHighlight: 'shiki',
+
+    shikiConfig: {
+      theme: 'github-dark',
+    },
+
     processor: unified({
       rehypePlugins: [
         rehypeSlug,
