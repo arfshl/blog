@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeExternalLinks from 'rehype-external-links';
+import rehypeGithubRawMedia from './src/plugins/rehype-github-raw-media.mjs';
 
 export default defineConfig({
   site: 'https://arfshl.github.io',
@@ -34,6 +35,7 @@ export default defineConfig({
             rel: ['noopener'],
           },
         ],
+          rehypeGithubRawMedia,
       ],
     }),
   },
