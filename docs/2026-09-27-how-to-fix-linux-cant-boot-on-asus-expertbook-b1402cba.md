@@ -50,3 +50,5 @@ sudo grub-mkconfig -o /boot/grub2/grub.cfg
 ```
 
 This should solve the problem of black screen when booting linux distros
+
+[This article is Licensed under CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode.txt)
