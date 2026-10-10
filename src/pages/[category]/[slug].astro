@@ -179,18 +179,18 @@ const { Content } = await render(post);
       [&_blockquote_p]:m-0
 
       /* Inline code defined with backticks */
-      [&_code]:rounded-md
-      [&_code]:bg-[#07111f]
-      [&_code]:border
-      [&_code]:border-gray-700
-      [&_code]:px-1.5
-      [&_code]:py-0.5
-      [&_code]:text-sm
-      md:[&_code]:text-base
-      [&_code]:text-gray-300
-      [&_code]:before:content-['']
-      [&_code]:after:content-['']
-      [&_code]:font-['JetBrains_Mono']
+      [&_:not(pre)>code]:rounded-md
+      [&_:not(pre)>code]:bg-[#07111f]
+      [&_:not(pre)>code]:border
+      [&_:not(pre)>code]:border-gray-700
+      [&_:not(pre)>code]:px-1.5
+      [&_:not(pre)>code]:py-0.5
+      [&_:not(pre)>code]:text-xs
+      md:[&_:not(pre)>code]:text-sm
+      [&_:not(pre)>code]:text-gray-300
+      [&_:not(pre)>code]:before:content-['']
+      [&_:not(pre)>code]:after:content-['']
+      [&_:not(pre)>code]:font-['JetBrains_Mono']
       ">
          <Content />
       </div>
