@@ -8,7 +8,7 @@ tags:
   - tutorial
 slug: ntfs-storage-pool-libvirt-config
 ---
-*Note that this will reduce security measure of KVM in exchange of functionality*
+**Note that this will reduce security measure of KVM in exchange of functionality**
 
 1. Change on /etc/libvirt/qemu.conf
 
