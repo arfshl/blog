@@ -1,13 +1,14 @@
 ---
 title: Libvirt configuration for working with ntfs-formatted partition storage pool
-description: It isn't that hard using ntfs-formatted partition as storage pool for QEMU/KVM
+description: It isn't that hard using ntfs-formatted partition as storage pool
+  for QEMU/KVM, here's how
 date: 2026-10-10
 category: tech
 tags:
   - tutorial
 slug: ntfs-storage-pool-libvirt-config
 ---
-#### Note that this will reduce security measure of KVM in exchange of functionality
+###### Note that this will reduce security measure of KVM in exchange of functionality
 
 1. Change on /etc/libvirt/qemu.conf
 
@@ -48,7 +49,7 @@ Edit `/etc/udisks2/mount_options.conf` (need sudo)
 ntfs_defaults=uid=$UID,gid=$GID
 ```
 
-B. change your existing mount settings on `/etc/fstab` or disk management applications such like gnome disks or kpartition to this one so libvirt can access it without getting blocked either by file permission or selinux
+B. Change your existing mount settings on `/etc/fstab` or disk management applications such like gnome disks or kpartition to this one so libvirt can access it without getting blocked either by file permission or selinux
 
 ```
 defaults,uid=1000,gid=1000,fmask=0000,dmask=0022,windows_names,noatime,context="system_u:object_r:virt_image_t:s0"
@@ -56,7 +57,7 @@ defaults,uid=1000,gid=1000,fmask=0000,dmask=0022,windows_names,noatime,context="
 
 3. SELinux booleans
 
-change this 2 booleans involving libvirt and qemu processes
+Change this 2 booleans involving libvirt and qemu processes
 
 ``` 
 sudo setsebool -P virt_use_fusefs 1 # Allow virt to use fusefs
