@@ -59,7 +59,9 @@ defaults,uid=1000,gid=1000,fmask=0000,dmask=0022,windows_names,noatime,context="
 
 Change this 2 booleans involving libvirt and qemu processes
 
-``` 
+```
 sudo setsebool -P virt_use_fusefs 1 # Allow virt to use fusefs
 sudo setsebool -P domain_can_mmap_files # Allow domain to can mmap files
 ```
+
+[This article is Licensed under CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode.txt)
