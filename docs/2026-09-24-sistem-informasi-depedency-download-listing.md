@@ -10,7 +10,7 @@ slug: si-deps-download-list
 
 **OpenJDK**
 
-Windows, macOS: [https://adoptium.net/temurin/releases](https://adoptium.net/temurin/releases](https://adoptium.net/temurin/releases))
+Windows, macOS: https://adoptium.net/temurin/releases
 
 ```bash
 # Distribution Build
@@ -34,11 +34,11 @@ sudo zypper install java-25-openjdk
 
 **VSCode**
 
-[https://code.visualstudio.com/](https://code.visualstudio.com/](https://code.visualstudio.com/))
+https://code.visualstudio.com/
 
 **OBS Screen Recorder**
 
-Windows, macOS: [https://obsproject.com/](https://obsproject.com/](https://obsproject.com/))
+Windows, macOS: https://obsproject.com/
 
 ```bash
 # Distribution Build
@@ -62,7 +62,7 @@ sudo zypper install obs-studio
 
 **WSL Images**
 
-Debian: [https://apps.microsoft.com/detail/9msvkqc78pk6](https://apps.microsoft.com/detail/9msvkqc78pk6](https://apps.microsoft.com/detail/9msvkqc78pk6))
+Debian: https://apps.microsoft.com/detail/9msvkqc78pk6
 
-Ubuntu: [https://apps.microsoft.com/detail/9pdxgncfsczv](https://apps.microsoft.com/detail/9pdxgncfsczv](https://apps.microsoft.com/detail/9pdxgncfsczv))
+Ubuntu: https://apps.microsoft.com/detail/9pdxgncfsczv
 
