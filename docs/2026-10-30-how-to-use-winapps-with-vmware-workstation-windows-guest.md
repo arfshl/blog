@@ -43,7 +43,7 @@ slug: winapps-with-vmware
 10. Go to: `Control Panel\Network and Internet\Network Connections`
 11. Select Ethernet 1 with `Unidentified Network` status
 12. Go to Properties -> Internet Protocol Version 4 (TCP/IPv4)
-13. Select `Use the following IP address` we're making this IP static, for Linux host VMware use subnet `172.16.137.0`, so we just fill IP address with `172.16.137.10`, `255.255.0.0` for subnet mask, and left empty for default gateway
+13. Select `Use the following IP address` we're making this IP static, for Linux host VMware use subnet `172.16.137.0`, so we just fill IP address with `172.16.137.10`, `255.255.255.0` for subnet mask, and left empty for default gateway
 
 ![](/media/winapps-with-vmware/img5.png)
 
