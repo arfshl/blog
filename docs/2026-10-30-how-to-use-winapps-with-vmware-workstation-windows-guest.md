@@ -28,22 +28,26 @@ slug: winapps-with-vmware
 4. Then boot the VM and install Windows 10+ on your VMware, you probably know how to do this
 5. Use local account, since RDP need user account with password, use password for your local account
 6. Install VMware Tools
-7. Enable remote desktop on your Windows guest
+7. Enable shared folder for filesystem sharing, since WinApps only can share your home folder ([Issues #601](https://github.com/winapps-org/winapps/issues/601)), this is very useful primarily if you mount NTFS partition or working on file outside your home folder
+
+![](/media/winapps-with-vmware/img6.png)
+
+8. Enable remote desktop on your Windows guest
 
 - Settings -> System -> Remote desktop -> Enable Remote Desktop
 
 ![](/media/winapps-with-vmware/img4.png)
 
-8. Download and run this file on your Windows:
+9. Download and run this file on your Windows:
 
 - [https://github.com/winapps-org/winapps/blob/main/oem/RDPApps.reg](https://github.com/winapps-org/winapps/blob/main/oem/RDPApps.reg)
 - [https://github.com/winapps-org/winapps/blob/main/oem/NetProfileCleanup.ps1](https://github.com/winapps-org/winapps/blob/main/oem/NetProfileCleanup.ps1) (Run as Administrator)
 
-9. Open Control Panel
-10. Go to: `Control Panel\Network and Internet\Network Connections`
-11. Select Ethernet 1 with `Unidentified Network` status
-12. Go to Properties -> Internet Protocol Version 4 (TCP/IPv4)
-13. Select `Use the following IP address` we're making this IP static, for Linux host VMware use subnet `172.16.137.0`, so we just fill IP address with `172.16.137.10`, `255.255.255.0` for subnet mask, and left empty for default gateway
+10. Open Control Panel
+11. Go to: `Control Panel\Network and Internet\Network Connections`
+12. Select Ethernet 1 with `Unidentified Network` status
+13. Go to Properties -> Internet Protocol Version 4 (TCP/IPv4)
+14. Select `Use the following IP address` we're making this IP static, for Linux host VMware use subnet `172.16.137.0`, so we just fill IP address with `172.16.137.10`, `255.255.255.0` for subnet mask, and left empty for default gateway
 
 ![](/media/winapps-with-vmware/img5.png)
 
